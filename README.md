@@ -45,3 +45,11 @@ The `--save-exact=true` saves exact version of the package.
 The upside of this approach is that we fully control the version of the package we install. It allows us to avoid getting accidently breaking changes with patch and minor updates.
 
 Unfortunately, using --save-exact is also a sure-fire way to miss any patches or backwards-compatible features in your dependencies. If you choose to take the exact version approach, then be diligent about upgrading core packages over time.
+
+## rollup.config.js
+
+### Purpose:
+
+To configure rollup bunder. Fair question would be why do we need the rollup bunder since we already have the TypeScript.
+
+The first option for compiling .ts files is of course tsc and it does its job well, but there is one problem. Node requires us to specify extensions when using ES Modules, so we must import each file as import something from './something.ts'. When this code is compiled with tsc, it retains the .ts extension, which makes it impossible to run. There are options for changing extensions after compilation, but it can be easily done with a bundler. This is why we need Rollup.
