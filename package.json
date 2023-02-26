@@ -3,14 +3,17 @@
   "type": "module",
   "version": "1.0.0",
   "description": "A CLI to bootstrap my new projects",
-  "main": "./src/index.js",
+  "main": "./dist/cli.js",
   "bin": {
     "@j.u.p.iter/create-project": "bin/create-project.js",
     "create-project": "bin/create-project.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c rollup.config.js --watch"
+    "build": "rollup -c rollup.config.js",
+    "build:prod": "npm run build",
+    "build:dev": "npm run build --watch",
+    "ts-build": "tsc --watch"
   },
   "publishConfig": {
     "access": "public"

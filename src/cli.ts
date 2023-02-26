@@ -1,36 +1,13 @@
-import arg from 'arg';
 import inquirer from 'inquirer';
 import path from 'path';
 
 import { createProject } from './main';
 
-import { Options, Argv } from './types';
+import { parseArgumentsIntoOptions } from './utils/parseArgumentsIntoOptions';
 
-const parseArgumentsIntoOptions = (rawArgs: Argv) => {
-  const args = arg(
-    {
-      '--git': Boolean,
-      '--yes': Boolean,
-      '--install': Boolean,
+import { RawOptions, Args } from './types';
 
-      '-g': '--git',
-      '-y': '--yes',
-      '-i': '--install',
-    },
-    {
-      argv: rawArgs.slice(2), 
-    }
-  );
-
-  return {
-    skipPrompts: args['--yes'] || false,
-    initializeGit: args['--git'] || false,
-    template: args._[0],
-    runInstall: args['--install'] || false,
-  } 
-};
-
-const promptForMissingOptions = async (options: Options) => {
+const promptForMissingOptions = async (options: RawOptions) => {
   const defaultTemplate =  'JavaScript';
 
   if (options.skipPrompts) {
@@ -70,7 +47,7 @@ const promptForMissingOptions = async (options: Options) => {
   };
 };
 
-export const cli = async (args: Argv) => {
+export const cli = async (args: Args) => {
   const cliOptions = parseArgumentsIntoOptions(args);
 
   const preparedOptions = await promptForMissingOptions(cliOptions);
