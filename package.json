@@ -9,7 +9,8 @@
     "create-project": "bin/create-project.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c rollup.config.js --watch"
   },
   "publishConfig": {
     "access": "public"
@@ -32,6 +33,9 @@
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "11.0.0",
+    "@types/inquirer": "9.0.3",
+    "@types/listr": "0.14.4",
+    "@types/ncp": "2.0.5",
     "@types/node": "18.14.1",
     "rollup": "3.17.2",
     "tslib": "2.5.0",

@@ -2,9 +2,11 @@ import arg from 'arg';
 import inquirer from 'inquirer';
 import path from 'path';
 
-import { createProject } from './main.ts';
+import { createProject } from './main';
 
-const parseArgumentsIntoOptions = (rawArgs) => {
+import { Options, Argv } from './types';
+
+const parseArgumentsIntoOptions = (rawArgs: Argv) => {
   const args = arg(
     {
       '--git': Boolean,
@@ -28,7 +30,7 @@ const parseArgumentsIntoOptions = (rawArgs) => {
   } 
 };
 
-const promptForMissingOptions = async (options) => {
+const promptForMissingOptions = async (options: Options) => {
   const defaultTemplate =  'JavaScript';
 
   if (options.skipPrompts) {
@@ -68,7 +70,7 @@ const promptForMissingOptions = async (options) => {
   };
 };
 
-export const cli = async (args) => {
+export const cli = async (args: Argv) => {
   const cliOptions = parseArgumentsIntoOptions(args);
 
   const preparedOptions = await promptForMissingOptions(cliOptions);
