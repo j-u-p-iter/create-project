@@ -56,4 +56,4 @@ The first option for compiling `.ts` files is of course `tsc` and it does its jo
 
 We build code to the dist folder which sits in the root folder of the project. The bundle is called cli.js.
 
-The binary reffers to the bundled version of the code since we are running it with node.
+The binary reffers to the bundled version of the code since we are running it with node.d
