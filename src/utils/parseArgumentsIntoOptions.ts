@@ -22,7 +22,7 @@ export const parseArgumentsIntoOptions = (rawArgs: Args): RawOptions => {
     skipPrompts: args['--yes'] || false,
     initializeGit: args['--git'] || false,
     template: args._[0],
-    runInstall: args['--install'] || false,
+    installPackages: args['--install'] || false,
   } 
 };
 

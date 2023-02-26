@@ -2,7 +2,7 @@ export type RawOptions = {
   skipPrompts: boolean;
   initializeGit: boolean;
   template?: string;
-  runInstall: boolean;
+  installPackages: boolean;
 }
 
 export type Options = Omit<RawOptions, 'skipPrompts'> & {

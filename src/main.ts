@@ -73,7 +73,7 @@ export const createProject = async (options: Options) => {
     {
       title: 'Install dependencies',
       task: () => installDependencies({ targetDir }),
-      skip: () => !options.runInstall 
+      skip: () => !options.installPackages 
         ? 'Pass --install to automatically install dependencies' 
         : undefined,
     }
