@@ -52,4 +52,4 @@ Unfortunately, using --save-exact is also a sure-fire way to miss any patches or
 
 To configure rollup bunder. Fair question would be why do we need the rollup bunder since we already have the TypeScript.
 
-The first option for compiling .ts files is of course tsc and it does its job well, but there is one problem. Node requires us to specify extensions when using ES Modules, so we must import each file as import something from './something.ts'. When this code is compiled with tsc, it retains the .ts extension, which makes it impossible to run. There are options for changing extensions after compilation, but it can be easily done with a bundler. This is why we need Rollup.
+The first option for compiling `.ts` files is of course `tsc` and it does its job well, but there is one problem. Node requires us to specify extensions when using ES Modules, so we must import each file as import something from './something.js'. Using TypeScript we don't specify the extensions, as result the compiled code doesn't contain `.js` extensions as well which makes it impossible to run this code. This is why we need a bundler. After we bundle the code it appears in one common file.
