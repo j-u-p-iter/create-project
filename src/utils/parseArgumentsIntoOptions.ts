@@ -19,10 +19,10 @@ export const parseArgumentsIntoOptions = (rawArgs: Args): RawOptions => {
   );
 
   return {
-    skipPrompts: args['--yes'] || false,
-    initializeGit: args['--git'] || false,
+    skipPrompts: Boolean(args['--yes']),
+    initializeGit: Boolean(args['--git']),
+    installPackages: Boolean(args['--install']),
     template: args._[0],
-    installPackages: args['--install'] || false,
   } 
 };
 
