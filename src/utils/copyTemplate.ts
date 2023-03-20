@@ -1,4 +1,5 @@
 import ncp from 'ncp';
+import { promisify } from 'util';
 
 const copy = promisify(ncp);
 

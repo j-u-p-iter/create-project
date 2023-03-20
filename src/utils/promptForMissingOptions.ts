@@ -1,9 +1,9 @@
 import inquirer from 'inquirer';
 
-import { RawOptions, Options } from '../types';
+import { RawOptions, Options, Template } from '../types';
 
 export const promptForMissingOptions = async (options: RawOptions): Promise<Options> => {
-  const defaultTemplate =  'JavaScript';
+  const defaultTemplate =  Template.JavaScript;
 
   if (options.skipPrompts) {
     return {
@@ -20,7 +20,7 @@ export const promptForMissingOptions = async (options: RawOptions): Promise<Opti
       type: 'list',
       name: 'template',
       message: 'Please choose which project template to use',
-      choices: ['JavaScript', 'TypeScript'],
+      choices: [Template.JavaScript, Template.TypeScript],
       default: defaultTemplate,
     });
   }

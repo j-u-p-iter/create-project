@@ -11,8 +11,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rollup -c rollup.config.js",
-    "build:prod": "npm run build",
-    "build:dev": "npm run build --watch",
+    "build:prod": "yarn run build",
+    "build:dev": "yarn run build --watch",
     "ts-build": "tsc --watch"
   },
   "publishConfig": {

@@ -25,6 +25,7 @@ export const createProject = async (options: Options) => {
     await access(templateDir, constants.R_OK)
   } catch(error) {
     console.error('%s Invalid template name', chalk.red.bold('ERROR'))
+
     process.exit(1);
   }
 
