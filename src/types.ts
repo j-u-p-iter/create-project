@@ -2,6 +2,7 @@ export type Args = string[];
 
 // Original options, parsed from the process.argv
 export type RawOptions = {
+  projectName: string;
   skipPrompts: boolean;
   initializeGit: boolean;
   template?: string;

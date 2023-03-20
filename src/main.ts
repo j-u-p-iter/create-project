@@ -10,10 +10,11 @@ import Listr from 'listr';
 import { copyTemplate } from './utils/copyTemplate';
 import { initGitRepo } from './utils/initGitRepo';
 import { installPackages } from './utils/installPackages';
+import { createProjectsFolder } from './utils/createProjectsFolder';
 import { Options } from './types';
 
 export const createProject = async (options: Options) => {
-  const targetDir = process.cwd();
+  const targetDir = path.join(process.cwd(), options.projectName);
 
   const templateDir = path.resolve(
     fileURLToPath(import.meta.url), 
@@ -30,6 +31,12 @@ export const createProject = async (options: Options) => {
   }
 
   const tasks = new Listr([
+    {
+      title: 'Create project\'s folder',
+      task: () => createProjectsFolder({ 
+        projectName: options.projectName,
+      }),
+    },
     {
       title: 'Copy project files',
       task: () => copyTemplate({

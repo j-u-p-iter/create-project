@@ -8,10 +8,12 @@ export const parseArgumentsIntoOptions = (rawArgs: Args): RawOptions => {
       '--git': Boolean,
       '--yes': Boolean,
       '--install': Boolean,
+      '--template': String,
 
       '-g': '--git',
       '-y': '--yes',
       '-i': '--install',
+      '-t': '--template',
     },
     {
       argv: rawArgs.slice(2), 
@@ -22,7 +24,8 @@ export const parseArgumentsIntoOptions = (rawArgs: Args): RawOptions => {
     skipPrompts: Boolean(args['--yes']),
     initializeGit: Boolean(args['--git']),
     installPackages: Boolean(args['--install']),
-    template: args._[0],
+    template: args['--template'],
+    projectName: args._[0],
   } 
 };
 
