@@ -16,6 +16,6 @@ export type Options = Omit<RawOptions, 'skipPrompts'> & {
 }
 
 export enum Template {
-  JavaScript = 'JavaScript',
+  React = 'React',
   TypeScript = 'TypeScript'
 }

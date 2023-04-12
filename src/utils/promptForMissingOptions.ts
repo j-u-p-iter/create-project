@@ -2,7 +2,7 @@ import inquirer from 'inquirer';
 
 import { RawOptions, Options, Template } from '../types';
 
-const defaultTemplate =  Template.JavaScript;
+const defaultTemplate =  Template.TypeScript;
 
 const defaultOptions = {
   initializeGit: true,
@@ -10,11 +10,17 @@ const defaultOptions = {
   template: defaultTemplate,
 };
 
+/**
+ * If some required options are missing we are asking to add them here.
+ *   As result the raw options came from the command line become fully ready
+ *   for further use by the tool.
+ *
+ */
 export const promptForMissingOptions = async (options: RawOptions): Promise<Options> => {
   if (options.skipPrompts) {
     options = {
-      ...options,
       ...defaultOptions,
+      ...options,
     };
   }
 
@@ -34,7 +40,7 @@ export const promptForMissingOptions = async (options: RawOptions): Promise<Opti
       type: 'list',
       name: 'template',
       message: 'Please choose which project template to use',
-      choices: [Template.JavaScript, Template.TypeScript],
+      choices: [Template.React, Template.TypeScript],
       default: defaultTemplate,
     });
   }

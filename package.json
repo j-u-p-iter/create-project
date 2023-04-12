@@ -9,7 +9,6 @@
     "create-project": "bin/create-project.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rollup -c rollup.config.js",
     "build:prod": "yarn run build",
     "build:dev": "yarn run build --watch",

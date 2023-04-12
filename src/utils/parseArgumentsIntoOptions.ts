@@ -2,6 +2,12 @@ import arg from 'arg';
 
 import { Args, RawOptions } from '../types';
 
+/**
+ * We take the arguments from the command line
+ *   and transform them into options ready to use
+ *   forther by the tool.
+ *
+ */
 export const parseArgumentsIntoOptions = (rawArgs: Args): RawOptions => {
   const args = arg(
     {

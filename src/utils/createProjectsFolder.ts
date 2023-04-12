@@ -1,15 +1,16 @@
-import { execa } from 'execa';
+import { mkdir } from 'node:fs/promises';
+import path from 'path';
 
 export const createProjectsFolder = async ({ 
   projectName 
 }: {
   projectName: string;
 }) => {
-  const result = await execa('mkdir', [projectName], {
-    cwd: process.cwd(),
-  });
+  const projectDir = path.resolve(process.cwd(), projectName); 
 
-  if (result.failed) {
+  try {
+    const result = await mkdir(projectDir)
+  } catch(error) {
     throw new Error('Failed to create project\'s folder.');
   }
 };

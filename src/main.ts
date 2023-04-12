@@ -1,19 +1,18 @@
 import chalk from 'chalk';
 import { access, constants } from 'node:fs/promises';
-import fs from 'fs';
 import path from 'path';
 import { promisify } from 'util';
 import { fileURLToPath } from 'url';
-import { execa } from 'execa';
 import Listr from 'listr';
 
 import { copyTemplate } from './utils/copyTemplate';
 import { initGitRepo } from './utils/initGitRepo';
 import { installPackages } from './utils/installPackages';
 import { createProjectsFolder } from './utils/createProjectsFolder';
+import { updatePackageJson } from './utils/updatePackageJson';
 import { Options } from './types';
 
-export const createProject = async (options: Options) => {
+export const createProject = async (options: Options): Promise<boolean> => {
   const targetDir = path.join(process.cwd(), options.projectName);
 
   const templateDir = path.resolve(
@@ -58,9 +57,19 @@ export const createProject = async (options: Options) => {
     }
   ]);
 
-  await tasks.run();
+  try {
+    await tasks.run();
+  } catch(error) {
+    console.error('Failed to setup the project.')
+    console.error(error);
+  }
 
-  console.log('%s Project ready', chalk.green.bold('DONE'));
+  await updatePackageJson({ 
+    targetDir, 
+    projectName: options.projectName,
+  });
+
+  console.log('%s Project is ready', chalk.green.bold('DONE'));
 
   return true;
 }
