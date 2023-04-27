@@ -11,6 +11,7 @@ import { installPackages } from './utils/installPackages';
 import { createProjectsFolder } from './utils/createProjectsFolder';
 import { updatePackageJson } from './utils/updatePackageJson';
 import { Options } from './types';
+import { automateGithub } from './utils/automateGithub/automateGithub';
 
 export const createProject = async (options: Options): Promise<boolean> => {
   const targetDir = path.join(process.cwd(), options.projectName);
@@ -44,6 +45,13 @@ export const createProject = async (options: Options): Promise<boolean> => {
       }),
     },
     {
+      title: 'Update package.json',
+      task: () => updatePackageJson({ 
+        targetDir, 
+        projectName: options.projectName,
+      }), 
+    },
+    {
       title: 'Initialize git',
       task: () => initGitRepo({ targetDir }),
       enabled: () => options.initializeGit
@@ -64,10 +72,7 @@ export const createProject = async (options: Options): Promise<boolean> => {
     console.error(error);
   }
 
-  await updatePackageJson({ 
-    targetDir, 
-    projectName: options.projectName,
-  });
+  await automateGithub();
 
   console.log('%s Project is ready', chalk.green.bold('DONE'));
 

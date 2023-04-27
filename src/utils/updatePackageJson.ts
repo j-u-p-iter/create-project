@@ -1,5 +1,6 @@
 import path from 'path';
 import { readFile, writeFile } from 'node:fs/promises';
+import { readPackageJson } from './readPackageJson';
 
 export const updatePackageJson = async ({ 
   targetDir, 
@@ -10,25 +11,15 @@ export const updatePackageJson = async ({
 }) => {
   const pathToPackageJson = path.resolve(targetDir, 'package.json'); 
 
-  let content;
-
-  try {
-    content = await readFile(
-      pathToPackageJson, 
-      { encoding: 'utf8' },
-    );
-  } catch(error) {
-    console.error("Failed to load package.json.");
-    console.error(error);
-  }
+  const packageJsonContent = await readPackageJson({ targetDir });
 
   try {
     await writeFile(
       pathToPackageJson, 
-      content.replaceAll('%projectName%', projectName),
+      packageJsonContent.replaceAll('%projectName%', projectName),
     );
   } catch(error) {
     console.error("Failed to update package.json.");
     console.error(error);
-  }
+  };
 }

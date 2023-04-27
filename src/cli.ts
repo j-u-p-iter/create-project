@@ -1,4 +1,3 @@
-import inquirer from 'inquirer';
 import path from 'path';
 
 import { createProject } from './main';
