@@ -2,7 +2,7 @@ import inquirer from 'inquirer';
 
 const VALID_TOKEN_LENGTH = 40;
 
-export const promptAuthToken = async () => {
+export const promptForAuthToken = async () => {
   const question = {
     name: 'token',
     type: 'input',
@@ -21,7 +21,7 @@ export const promptAuthToken = async () => {
   try {
     answer = await inquirer.prompt([question]);
   } catch(error) {
-    throw error;
+    throw new Error('Failed to prompt for auth token.');
   }
 
   return answer.token;

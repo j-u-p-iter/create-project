@@ -68,11 +68,18 @@ export const createProject = async (options: Options): Promise<boolean> => {
   try {
     await tasks.run();
   } catch(error) {
-    console.error('Failed to setup the project.')
-    console.error(error);
+    console.error('Failed to setup the project.');
+
+    process.exit(1);
   }
 
-  await automateGithub();
+  try {
+    await automateGithub({ targetDir, projectName: options.projectName });
+  } catch(error) {
+    console.error('Failed to automate github.');
+
+    process.exit(1);
+  }
 
   console.log('%s Project is ready', chalk.green.bold('DONE'));
 
