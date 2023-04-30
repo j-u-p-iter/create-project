@@ -3,14 +3,13 @@ import chalk from 'chalk';
 
 export const promptForAutomation = async () => {
   const question = {
+    type: 'confirm',
     name: 'automation',
-    type: 'input',
     message: 'Proceed to push this project to Github repo?',
-    choises: ['Yes', 'No'],
-    default: 'Yes',
+    default: true,
   };
 
   const answer = await inquirer.prompt([question]);
 
-  return answer.automation === 'Yes';
+  return answer.automation === true;
 };

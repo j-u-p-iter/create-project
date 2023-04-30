@@ -50,7 +50,7 @@ export const promptForMissingOptions = async (options: RawOptions): Promise<Opti
       type: 'confirm',
       name: 'initializeGit',
       message: 'Initialize a git repository?',
-      default: false,
+      default: true,
     }); 
   }
 
@@ -59,7 +59,7 @@ export const promptForMissingOptions = async (options: RawOptions): Promise<Opti
       type: 'confirm',
       name: 'installPackages',
       message: 'Install packages?',
-      default: false,
+      default: true,
     }); 
   }
 
