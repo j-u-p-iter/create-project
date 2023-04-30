@@ -16,6 +16,14 @@ import { automateGithub } from './utils/automateGithub/automateGithub';
 export const createProject = async (options: Options): Promise<boolean> => {
   const targetDir = path.join(process.cwd(), options.projectName);
 
+  try {
+    await access(targetDir);
+
+    console.error(`%s ${targetDir} folder already exists.`, chalk.red.bold('ERROR'));
+
+    process.exit(1);
+  } catch(error) {}
+
   const templateDir = path.resolve(
     fileURLToPath(import.meta.url), 
     '../../templates',
